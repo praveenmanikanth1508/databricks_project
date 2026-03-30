@@ -1,0 +1,38 @@
+resources:
+  jobs:
+    Earthquake_data_job:
+      name: Earthquake_data job
+      tasks:
+        - task_key: ingestion_bronze
+          notebook_task:
+            notebook_path: ../src/notebook/ingestion_bronze.ipynb
+            base_parameters:
+              dev_catalog: ${var.catalog}
+            source: WORKSPACE
+        - task_key: Bronze_silver_EQ
+          depends_on:
+            - task_key: ingestion_bronze
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.bronze_silver_etl_pipeline.id}
+            full_refresh: false
+          email_notifications:
+            on_success:
+              - kanths1508@gmail.com
+            on_failure:
+              - kanths1508@gmail.com
+        - task_key: EarthQuake_Dashboard
+          depends_on:
+            - task_key: Bronze_silver_EQ
+          dashboard_task:
+            subscription:
+              subscribers:
+                - user_name: praveenkumarmanikanth439@gmail.com
+              custom_subject: EQ Dashboard refresh
+            warehouse_id: a92c6bc91da948c1
+            dashboard_id: ${resources.dashboards.earthquake_monitor.id}
+      queue:
+        enabled: true
+      parameters:
+        - name: catalog_name
+          default: ${var.catalog}
+      performance_target: PERFORMANCE_OPTIMIZED
