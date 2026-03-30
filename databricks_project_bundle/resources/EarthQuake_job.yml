@@ -1,7 +1,7 @@
 resources:
   jobs:
     Earthquake_data_job:
-      name: Earthquake_data job
+      name: Earthquake_data job_prod
       tasks:
         - task_key: ingestion_bronze
           notebook_task:

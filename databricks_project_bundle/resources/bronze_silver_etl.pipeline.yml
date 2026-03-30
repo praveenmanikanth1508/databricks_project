@@ -3,7 +3,7 @@
 resources:
   pipelines:
     bronze_silver_etl_pipeline:
-      name: databricks_project_bundle_etl
+      name: databricks_project_bundle_etl_prod
       catalog: ${var.catalog}
       schema: ${var.schema}
       root_path: "../src/DLT_Pipelines/Bronze_Silver"
