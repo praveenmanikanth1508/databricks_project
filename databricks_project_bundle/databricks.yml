@@ -37,9 +37,9 @@ targets:
     workspace:
       host: https://dbc-feaf1728-234e.cloud.databricks.com
       # We explicitly deploy to /Workspace/Users/praveenkumarmanikanth439@gmail.com to make sure we only have a single copy.
-      root_path: /Workspace/Users/praveenkumarmanikanth439@gmail.com/.bundle/${bundle.name}/${bundle.target}
+      root_path: /Workspace/databricks_project
     variables:
-      catalog: dev_prod
+      catalog: prod_catalog
       schema: prod
       warehouse_id: a92c6bc91da948c1
     permissions:
