@@ -15,6 +15,8 @@ variables:
     description: The schema to use
   warehouse_id:
     description: warehouse_Id
+  spn_id:
+    description: Service Principal Application ID
 
 targets:
   dev:
@@ -30,6 +32,7 @@ targets:
       catalog: dev_catalog
       schema: dev
       warehouse_id: a92c6bc91da948c1
+      spn_id: "83c0c95c-2041-45ee-a4e2-c4c9e9f82719"  # Add your service principal application ID here
     presets:
       artifacts_dynamic_version: true
   prod:
@@ -42,6 +45,7 @@ targets:
       catalog: prod_catalog
       schema: prod
       warehouse_id: a92c6bc91da948c1
+      spn_id: "83c0c95c-2041-45ee-a4e2-c4c9e9f82719"  # Add your service principal application ID here
     permissions:
       - user_name: praveenkumarmanikanth439@gmail.com
         level: CAN_MANAGE
